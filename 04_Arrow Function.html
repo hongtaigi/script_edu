@@ -1,0 +1,223 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            // Function
+            // - fundamentaql building block in the program
+            // - subprogram can be used multiple times
+            // - performs a task or calculates a value
+            
+            // 1. Function declaration
+            // function name(param1,param2,..){ body.... return;}
+            // on function === one thing
+            // naming : doSomething, command, verb
+            // e.g. createCardAndPoint > createCard, createPoint
+            // function is object in JS
+            
+            function printHello(){
+                console.log('Hello');
+            }
+            printHello();
+            
+            function log(message){
+                console.log(message);
+            }
+            log('hello message');
+            
+            // 2. Parameters
+            // premitive parameters: passed by value
+            // object parameters: passed by reference
+            function changeName(obj){
+                obj.name = 'order';
+            }
+            const ellie = {name:'ellie'};
+            console.log(ellie);
+            changeName(ellie);
+            console.log(ellie);
+            
+            // 3.Default parameters ( added in ES6 )
+            function showMessage(message,from = 'unknown'){
+                console.log(message+' by '+from);
+            }
+            showMessage('Hi!');
+            showMessage('Hi!','ellie');
+            
+            // 4.Rest parameters ( added in ES6 )  - 배열형태 parameter
+            function printAll(...args){
+                for(let i = 0; i < args.length; i++){
+                    console.log(args[i]);
+                }
+            }
+            function printAll2(...args){
+                for(const arg of args){
+                    console.log(arg);
+                }
+            }
+            function printAll3(...args){
+                args.forEach((arg) => console.log(arg));
+            }
+            printAll('dream','coding','ellie');
+            printAll2('dream2','coding2','ellie2');
+            printAll2('dream3','coding3','ellie3');
+            
+            
+            // 5. Local scope
+            // 밖에서는 안이 보이지 않고
+            //   안에서만 밖을 볼 수 있다.
+            let globalMessage = 'global'; // global variable
+            function printMessage(){
+                let message = 'hello';    // local variable
+                console.log(message);
+                console.log(globalMessage);
+                
+                function printAnother(){
+                    console.log(message);
+                    let childMessage = 'hello';
+                }
+                //console.log(childMessage); // error 발생 (밖에서 안을 보려고)
+            }
+            printMessage();
+            
+            // 6. Return a value
+            function sum(a,b){
+                return a + b;
+            }
+            
+            // 7. Early return, early exit
+            // 나쁜예
+            function upgradeUser(user){
+                if(user.point > 10){
+                    // long upgrade logic....
+                }
+            }
+            // 좋은예
+            function upgradeUser(user){
+                if(user.point <= 10){
+                    return;
+                }
+                // long upgrade logic...
+            }
+            
+            
+            // First-class function
+            // functions are teated like any other variable
+            // can be assigned as value to variable
+            // can be passed as an argument to other functions.
+            // can be returned by another function
+            
+            // 1. Function expression
+            // a function declaration can be called earlier than it is defiend. (hoisted)
+            // a function expression is created when the execution reaches it.
+            
+            //print(); // anonymous function의 경우 정의 전에 호출하면 에러남
+                       // hoisted 되지 않음
+            //function expression
+            const print = function(){ // anonymous function
+                console.log('function expression');
+            }
+            //function declaration
+            print_de(); // error 발생하지 않음.
+            function print_de(){
+                console.log('function declaration');
+            }
+            print();
+            const printAgain = print;
+            printAgain();
+            const sumAgain = sum;
+            console.log(sumAgain(1,3));
+            
+            // 2. Callback function using function expression
+            function randomQuiz(answer, printYes, printNo){
+                if(answer === 'love you'){
+                    printYes();
+                } else {
+                    printNo();
+                }
+            }            
+            const printYes = function(){ // anonymous function
+                console.log('yes!');
+            }
+            // named function
+            // better debugging in debugger's stack traces
+            // recursions
+            const printNo = function print(){// named function
+                console.log('no!');
+            }
+            randomQuiz('wrong',printYes,printNo);
+            randomQuiz('love you',printYes,printNo);
+            
+            
+            // Arrow function
+            // alyays anonymous
+            const simplePrint = function(){
+                console.log('simplePrint!');
+            }
+            simplePrint();
+            
+            /*************************************************
+                아래와 같이 Arrow function으로 사용 할 수 있다.
+                간결할게 쓸수 있다.
+                블럭을 지정할 수 있다. 이경우는 리턴을 해야 한다.
+            *************************************************/
+            const arrowPrint = () => console.log('arrowPrint!');            
+            arrowPrint();
+            const arrowAdd = (a,b) => a + b; // return을 지정하지 않아도 연산값이 리턴된다.
+            console.log('arrow functin : 1 + 6 ='+arrowAdd(1,6));
+            console.log('arrow functin : 1 + 6 ='+arrowAdd('a','b'));
+            const arrowBlock = (a,b) => {
+                let val = a * b;
+                return val; //block을 사용한경우 return값은 지정하여야 한다.
+            };
+            console.log('arrow functin block : 2 * 6 ='+arrowAdd(2,6));
+            
+            
+            // IIFE: Immediately Invoked Function Expression
+            // 함수를 선언함과 동시에 호출 할 경우
+            function hello(){
+                console.log('IIFE');
+            }
+            hello();
+            /*************************************************
+                아래와 같이 선언함과 동시에 호출 할 수있다.
+            *************************************************/
+            (function iifeHello(){
+                console.log('iifeHello');
+            })();
+            
+            
+            // fun quiz time
+            // function calcuate(command,a,b)
+            // command: add, substract, divide, muliply, remainder
+            function calculat(comman,a,b){
+                switch(comman){
+                    case 'add':
+                        return a + b;
+                    case 'substract':
+                        return a - b;
+                    case 'divide':
+                        return a / b;
+                    case 'muliply':
+                        return a * b;
+                    case 'remainder':
+                        return a % b;
+                    default:
+                        throw Error('unkonwn command');
+                }
+            }
+            
+            console.log( calculat('add',2,3) );
+            console.log( calculat('test',2,3) );
+            
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+
+.alert-box {
+    background: #6f62b4;
+    color: blue;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+#alert2 {
+    background: #be4a91;
+    color: blue;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}

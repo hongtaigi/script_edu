@@ -1,0 +1,183 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>        
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            // 1.string
+            console.log('my'+'cat');
+            console.log('1'+2);
+            console.log(`string literals: 1 + 2 = ${1 + 2}`); // explorer에서는 에러발생
+            
+            // 2.Numeric operators
+            console.log( 1 + 1); // add
+            console.log( 1 - 1); // substract
+            console.log( 1 / 1); // divide
+            console.log( 1 * 1); // muliply
+            console.log( 5 % 3); // remainder
+            console.log( 2 ** 3); // exponentiation
+            
+            // 3. Increment and decrement operators
+            let counter = 2;
+            const preIncrement = ++counter; // -- 도동일
+            // counter = counter + 1;
+            // preIncrement = counter
+            // 하나를 증가한 다음에 counter의 값을 할당
+            console.log('counter='+counter+', preIncrement='+preIncrement);
+            
+            let counter2 = 2;
+            const preIncrement2 = counter2++;  // -- 도동일
+            // preIncrement2 = counter2
+            // counter2 = counter2 + 1;
+            // counter2의 값을 할당한 다음에 counter2 값을 증가
+            console.log('counter2='+counter2+', preIncrement2='+preIncrement2);
+            
+            
+            // 4. Assignment operators
+            let x = 3;
+            let y = 6;
+            
+            x += y; // x = x + y;
+            console.log('[x=3,y=6] x += y : '+x); x = 3; y = 6;
+            x -= y; // x = x - y;
+            console.log('[x=3,y=6] x -= y : '+x); x = 3; y = 6;
+            x *= y; // x = x * y;
+            console.log('[x=3,y=6] x *= y : '+x); x = 3; y = 6;
+            x /= y; // x = x / y;
+            console.log('[x=3,y=6] x /= y : '+x); x = 3; y = 6;
+            
+            // 5. Comparison operators
+            // <  less than
+            // <= less than or equal
+            // >  greater than
+            // >= greater than or equal
+            
+            // 6. Logica operators || (or) , && (and) , !(not)
+            // || (or), finds the first truthy value / or 는 첫번째 true가 나올때까지
+            // && (and), finds the first falsy value / and 는 첫번째 false가 나올때까지
+            // ! - 값을 반대로 바꾸어줌
+            const value1 = true;
+            const value2 = 4 > 2;
+            function check(){
+                console.log("in function check!!");
+                return true;
+            }
+            console.log('or:'+(value1 || value2 || check()));
+            console.log('and:'+(value1 && value2 && check()));
+            console.log('!:'+!value1);
+            // often used to compress long if-statement
+            // nullableObject && nullableObject.something
+            //if(nullableObject != nuu){
+            //    nullableObject.something;
+            //}
+            
+            // 7. Equality
+            const stringFive = '5';
+            const numberFive = 5;
+            // == loose equality, with type conversion  - 형변환하여 비교 
+            // 숫자형 문자는 숫자로 인식하게 된다.
+            console.log('stringFive == numberFive : '+(stringFive == numberFive));
+            console.log('stringFive != numberFive : '+(stringFive != numberFive));
+            // === strict equality, with type conversion  - 형변환하지 않는다.
+            // 원래의 자료형으로 비교한다.
+            // strict equality를 사용하는것이 좋다.
+            console.log('stringFive === numberFive : '+(stringFive === numberFive));
+            console.log('stringFive !== numberFive : '+(stringFive !== numberFive));
+            // object equality by reference
+            const ellie1 = {name:'ellie'};
+            const ellie2 = {name:'ellie'};
+            const ellie3 = ellie1;
+            console.log('ellie1 == ellie2 : '+(ellie1 == ellie2));
+            console.log('ellie1 == ellie2 : '+(ellie1 === ellie2));
+            console.log('ellie1 == ellie3 : '+(ellie1 === ellie3));
+            /*
+            ellie1 ----> ref1 ----->name---->ellie
+                              ----->age ---->20
+            ellie3 ----> ref1
+            
+            ellie2 ----> ref2 ----->name---->ellie
+                              ----->age ---->20
+            */
+            // equality - puzzler
+            console.log('0 == false : '+(0 == false)); //true
+            console.log('0 === false : '+(0 === false)); //false
+            console.log('\'\' == false : '+('' == false));//true
+            console.log('\'\' === false : '+('' === false));//false
+            console.log('null == undefined : '+(null == undefined));//true
+            console.log('null === undefined : '+(null === undefined));//false
+            
+            // 8. Conditional operators: if
+            // if, else if, else
+            
+            // 9. Ternary operator: ?  3항연산자
+            // condition ? value1(true) : value2(false);
+            console.log( name === 'ellie' ? 'yes':'no');
+            
+            // 10. Switch statement
+            // use for muliple if checks
+            // use for enum-like value check
+            // use for muliple type checks in TS
+            const browse = 'IE';
+            
+            switch (browse) {
+                case 'IE' :
+                    console.log('go ayay!');
+                    break;
+                case 'Chrome' :
+                    console.log('love you!');
+                    break;
+                case 'Firefox' :
+                    console.log('love you!');
+                    break;
+                default :
+                    console.log('same all!');
+                    break;
+            }
+            
+            // 11. Loops
+            // shile loop, while the condition is truthy
+            // body code is executed.
+            let i = 3;
+            while(i>0){
+                console.log('while:'+i);
+                i--;
+            }
+            
+            
+            // do while loop, body code is exceuted first,
+            // then check the condition,
+            do{
+                console.log('do while:'+i);
+                i--;
+            } while(i>0);
+            
+            // for loop, for(begin; condition; step)
+            for(let i = 3; i > 0; i = i-2){
+                console.log('inline variable for:'+i);
+            }
+            
+            // break : loop를 완전히 빠져나가는것
+            // continue : 현재의 스텝만 skip하고 진행하는것
+            // Q1. iterate from 0 to 10 and print only even numbers (use continu)
+            for(let i = 0; i <= 10; i = i+1){
+                if(i%2 !== 0) continue;
+                console.log('even numbers:'+i);
+            }
+            // Q2. iterate from 0 to 10 and print numbers nutil reaching 8 (use break)
+            for(let i = 0; i <= 10; i = i+1){
+                if(i >8) break;
+                console.log('reaching 8:'+i);
+            }
+            
+            
+            
+            
+        </script>
+    </body>
+</html>

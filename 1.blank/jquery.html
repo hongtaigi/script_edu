@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="KR">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>css 스타일 변경하기</title>
+<link rel="stylesheet" href="./css/normalize.css">
+<link rel="stylesheet" href="./css/main.css">
+
+<script src="./js/vendor/jquery-1.10.2.min.js"></script>
+<script src="./js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="./js/main.js"></script>
+<script>
+    /**
+    Tag name selector
+    
+    $("a") = document.getElementsByTagName('a')
+    
+    id selector
+    
+    $("#container") = document.getElementById('container')
+    
+    class selector
+    
+    $(".btn") = document.getElementsByClassName('btn')
+    
+    
+    # 여러개 중 정확히 선택하려면
+      자식 요소를 선택할수 있다.
+      
+      $("#container .btn")
+      $(".btn .name")
+    
+    **/
+    
+    /************************************************************
+    [문서가 준비되면 할일]
+    
+    document.addEventListener('DOMContentLoaded',function(){
+        document.getElementsByTagName('h1')[0].style.color='red';
+    })
+        
+    $(document).ready(function(){
+        $('h1').css('color','blue');
+        $('h1').css({'color':'green'});
+    })
+    ************************************************************/
+    
+    
+    $(function(){
+        //css에서 h1{color:blue;}
+        $('h1').css('color','blue');
+        $('h1').css({'color':'green'});
+        
+        /**
+        //css에서 #typo .inner {text-decoration:underline;}
+        $('#typo .inner').css('text-decoration','underline');
+        
+        //아래쪽 5px 두께 실선 red
+        //#typo .inner {border-bottom:5px solid red;}
+        $('#typo .inner').css('border-bottom','5px solid red');
+        
+        //45도 돌리기 #typo .inner {transform: rotate(45deg);}
+        $('#typo .inner').css('transform','rotate(45deg)');
+        
+        //글씨의 투명도 50% #typo .inner {opacity: 0.5;}
+        $('#typo .inner').css('opacity',0.5);
+        **/
+        
+        //여러개의 값으로 한번에 변경
+        $('#typo .inner').css({
+            'text-decoration':'underline',
+            'border-bottom':'5px solid red',
+            'transform':'rotate(45deg)',
+            'opacity':0.5
+        });
+        
+        //더줄여보기
+        $('#typo .inner').css({
+            textDecoration:'underline',
+            borderBottom:'5px solid red',
+            transform:'rotate(45deg)',
+            opacity:0.5
+        });
+        
+    })
+    
+    
+    
+</script>
+</head>
+<body>
+
+<header class="page-header" role="banner">
+    <h1>Creative jQuery Sample</h1>
+</header>
+
+<div class="page-main" role="main">
+    <div id="typo">
+        <div class="inner">Creative jQuery</div>
+    </div>
+</div>
+
+<script>
+    //document.getElementsByTagName('h1')[0].style.color='red';
+    //$('h1').css('color','red');
+    //$('h1').css({'color':'red','size':'50px'});
+</script>
+
+
+</body>
+</html>

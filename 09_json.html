@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <h2 id="hello">JSON</h2>
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            //                 serialize
+            // object(토끼) --------------> string(JSON)
+            //                 deserialize
+            // object(토끼) <-------------- string(JSON)
+            
+            
+            // JSON
+            // JavaScript Object Notation
+            
+            // 1. Object to JSON
+            // stringfy(obj)
+            let json = JSON.stringify(true);
+            console.log('Object to JSON [boolean] :'+json);
+            
+            json = JSON.stringify(['apple','banana']);
+            console.log('Object to JSON [array] :'+json);
+            
+            const rabbit = {
+                name: 'tori',
+                color: 'white',
+                size: null,
+                birthDate: new Date(),
+                jump: function(){
+                    console.log(this.name+' can jump!');
+                },
+            }
+            // Object를 json으로 변환할때 function은 변환되지 않는다.
+            json = JSON.stringify(rabbit);
+            console.log('Object to JSON [object] :'+json);
+            
+            // json으로 변환시에 특정한 필드만 변환하고 싶다면 
+            // option으로 변환하고자 하는 키값 배열을 입력할면 된다.
+            json = JSON.stringify(rabbit,['name','color']);
+            console.log('Object to JSON [object 특정값만 골라서 / 배열값사용] :'+json);
+            
+            // json으로 변환시에 콜백함수를 사용하여 세밀하게 통제 할 수도 있다.
+            json = JSON.stringify(rabbit,function(key,value){
+                console.log('key:'+key+', value:'+value);
+                return value;
+            });
+            
+            json = JSON.stringify(rabbit,function(key,value){
+                console.log('key:'+key+', value:'+value);
+                return key === 'name' ? 'ellie' : value;
+            });
+            console.log('Object to JSON [object callbackfn{ name값을 변경 }] :'+json);
+            
+            
+            /////////////////////////////////////////////////////////////////////////
+            // 2. JSON to Object
+            // parse(json)
+            json = JSON.stringify(rabbit);
+            const obj = JSON.parse(json);
+            console.log('json to object use JSON.parse >>');
+            console.log(obj);
+            //함수는 포함되지 않는다.
+            rabbit.jump();
+            // obj.jump();  // error남..
+            
+            // date에서 stringify로 변환된 object는 string 임으로
+            // parse를 통하여 object로 변환시에 date가 아닌 string으로 받아와 진다.
+            console.log('rabbit.birthDate.getDate() >> '+rabbit.birthDate.getDate());
+            //console.log('obj.birthDate.getDate() >> '+obj.birthDate.getDate()); // error 발생
+            console.log('obj.birthDate >> '+obj.birthDate);
+            
+            // JSON.parse의 callbackfn(this:any, key:string, value: any) => any
+            const parseObj = JSON.parse(json,function(key,value){
+                return key === 'birthDate' ? new Date() : value;
+            });
+            console.log('json to object use JSON.parse callbackfn >>');
+            console.log(parseObj);
+            console.log('parseObj.birthDate.getDate() >> '+parseObj.birthDate.getDate()); // error 발생
+            
+            
+            
+            
+            
+        </script>
+    </body>
+</html>

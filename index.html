@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <h2 id="hello">안녕하세요.</h2>
+        <h2 id="hi">ssss</h2>
+        <span id="s1">100px</span>
+        
+        <!--alert-box 에 커서를 놓고  ctrl + e-->
+        <hr>
+        <div class="alert-box" id="alert">Alert 박스</div>
+        <button onclick="document.getElementById('alert').style.display='block'">alert box 보여주기</button>
+        <button onclick="document.getElementById('alert').style.display='none'">alert box 감추기</button>
+        
+        <!--function-->
+        <hr>
+        <div class="alert-box" id="alert2">Alert 박스</div>
+        <button onclick="displayAlert('alert2','block');">function으로 alert box 보여주기</button>
+        <button onclick="displayAlert('alert2','none');">function으로 alert box 감추기</button>
+        
+        <!--function-->
+        <hr>
+        <div class="alert-box" id="alert3">
+            <p id="title"></p>
+            <button id="close">X</button>
+        </div>
+        <button onclick="displayAlertMsg('block','ID를 입력 하세요.');">버튼1</button>
+        <button onclick="displayAlertMsg('block','PWD를 입력 하세요.');">버튼2</button>
+            
+        <script>
+            //selector
+            document.getElementById("hello").innerHTML = "안녕";
+            document.getElementById("hi").innerHTML = "바밤바";
+            document.getElementById("hi").style.color = "red";
+            document.getElementById("s1").style.fontSize = "100px";
+            
+            //function
+            function displayAlert(id,mode){
+                document.getElementById(id).style.display = mode;
+            }
+            
+            function displayAlertMsg(mode,msg){
+                document.getElementsByClassName('alert-box')[2].style.display = mode;
+                if(mode == "block") document.getElementById('title').innerHTML = msg;
+            }
+            
+            //event lisener
+            document.getElementById('close').addEventListener('click',function(){
+                displayAlert('alert3','none');
+            });
+            
+        </script>
+    </body>
+</html>

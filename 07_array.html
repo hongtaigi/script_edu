@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            // Array
+            
+            // 1. Declaration 선언
+            const arr1 = new Array();
+            const arr2 = [1,2];
+            
+            // 2. Index position
+            const fruits = ['사과','바나나'];
+            console.log(fruits);
+            console.log(fruits.length);
+            console.log(fruits[0]);
+            console.log(fruits[1]);
+            console.log(fruits[6]); // undefined
+            console.log('last value:'+fruits[fruits.length-1]); //마자막값출력
+            
+            // 3. Looping over an array
+            // print all fruits
+            // a. for
+            for(let i = 0; i < fruits.length; i++){
+                console.log('for문 fruits['+i+']='+fruits[i]);
+            }
+            // b. for of     - explorer에서 error
+            /*
+            let cnt = 0;
+            for( let value of fruits){
+                console.log('fruits['+(cnt++)+']='+value);
+            }
+            */
+            // c. forEach
+            fruits.forEach(function(value,index,array){
+                console.log(value,index,array);
+            });
+            // c-1 이름없는function anonymous function은 arrow function으로 쓸수 있다.  - explorer에서 error
+            /*  
+            fruits.forEach((value,index,array) => {
+                console.log(value,index,array);
+            });
+            */
+            // c-2 한줄짜리 arrow function은 {}도 생략 가능하다.   - explorer에서 error
+            /*
+            fruits.forEach((value,index,array) => console.log(value,index,array));
+            */
+            
+            
+            // 4. Addtion, deletion, copy
+            // push: add an item to the end
+            fruits.push('딸기','복숭아');
+            console.log(fruits);
+            // pop: remove an item from the end
+            fruits.pop();
+            console.log(fruits);
+            fruits.pop();
+            console.log(fruits);
+            
+            // unshift: add an item to the beginging
+            fruits.unshift('딸기','복숭아');
+            console.log(fruits);
+            // shift: remove an item from the beginging
+            fruits.shift();
+            console.log(fruits);
+            fruits.shift();
+            console.log(fruits);
+            
+            // note!! shift, unshift are slower than pop, push
+            
+            // splice: remove an item by index position -- 어디서부터 몇개나 지울지
+            fruits.push('딸기','복숭아','레몬');
+            console.log(fruits);
+            
+            fruits.splice(1) // 인덱스 1부터 모두 지운다.
+            console.log(fruits);
+            
+            fruits.push('바나나','딸기','복숭아','레몬');
+            fruits.splice(1,1) // 인덱스 1부터 1개만 지운다.
+            console.log(fruits);
+            
+            fruits.splice(1,1,'메론','수박');
+            console.log(fruits); // 지운인텍스의 자리부터 값을 추가해 넣는다.
+            
+            // combine two arrays 배열묶이
+            // concat : 배열을 더한다.
+            const  fruits2 = ['거봉','포도'];
+            const newFruits = fruits.concat(fruits2);
+            console.log(newFruits);
+            
+            // 5. Searching
+            // indexOf: find the index
+            console.log(newFruits);
+            console.log(newFruits.indexOf('거봉'));  //  해당인덱스
+            console.log(newFruits.indexOf('거북이')); // -1
+            
+            // includes  -- explorer에서 error
+            /*
+            console.log(newFruits.includes('수박')); // true
+            console.log(newFruits.includes('무'));   // false
+            */
+            
+            // lastIndexOf
+            newFruits.push('사과');
+            console.log(newFruits);
+            console.log(newFruits.indexOf('사과'));      // 첫번째사과의 인덱스
+            console.log(newFruits.lastIndexOf('사과'));  // 마지막사과의 인덱스
+            
+            
+        </script>
+    </body>
+</html>

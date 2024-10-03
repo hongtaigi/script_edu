@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            // 2.Variable, rw( read / wite )
+            // let ( added in ES6)
+            // mutable data type
+            
+            let name = 'ellie';
+            console.log(name);
+            
+            name = 'hello';
+            console.log(name);
+            //block scope 블록 안에서 선언된 것은 블록 안에서만 인식함.
+            let globalName = 'glbal name';
+            {
+                let r_name = 'r name';
+                console.log(r_name);
+            }
+            console.log(globalName);
+            //console.log(r_name); // error 발생됨
+            
+            // var (don't ever use this)
+            // var hoisting ( move declaration from bottom to top) - 어디에서 선언했냐와 상관없이 항상 제일위로 선언을 끌어올리는것
+            // hs no block scope - block 밖에서도 인식한다.
+            // 명확히 개발하기 위해 사용해서는 안되나 let이 익스버전 일부에서는 적용되지 않는다.
+            console.log(age); // undefined로 출력되며 에러발생하지 않는다.
+            var age;
+            age = 4;
+            {
+                var block_var = 'block_var';
+            }
+            console.log(block_var); // 블럭안의 변수도 에러없이 사용된다.
+            
+            // 3. Contant r( read )
+            // favor immutalbe data type always for a few resons ;  한번값이 할당되면 값을 변경할 수 없다.
+            // Note
+            // Immutable data types: premitive types, frozen objects ( i.e. object.freeze() )
+            // Mutable data types: all objects ty default are mutable in JS
+            // favor immutable data type alays for a few reasons:
+            // - security
+            // - thread safety
+            // - reduce numan mistakes
+            const daysInWeek = 7;
+            const maxNumber = 5;
+            //maxNumber = 1; // error남
+            
+            
+            
+            
+            // 4. Variable types
+            // primitive, single item:number, string, boolean, null, undefiend, symbol
+            // object, box container - object는 싱글데이터 타입의 모음
+            // function, first-class function - 함수도 변수로 할당할 수 있고 때문에 인자로 전달 할 수도 , 리턴타입 으로도 가능하다.
+            const count = 17; // integer
+            const size = 17.1; // decimal number
+            
+            console.log('value: '+count+', type: '+typeof count);
+            console.log('value: '+size+', type: '+typeof size);
+            
+            // number - speical numeric values: infinity(무한대) ,-infinity, NaN
+            // 0으로 나눈는 행위, 숫자연산에 문자가 개입한경우 문제가 됨.
+            const infinity = 1/0;
+            const negativeInfinity = -1/0;
+            const nAn = 'not a number'/2;
+            
+            console.log(infinity);
+            console.log(negativeInfinity);
+            console.log(nAn);
+            
+            // string
+            const const_str1 = 'str1';
+            const const_str2 = 'str2';
+            // !왼쪽의 ` 를 사용하면 문자열에 string변수값을 대입할 수 있다.  --> explorer에서 지원하지 않는다.
+            const add_str = `변수 더하기 ${const_str1} + ${const_str2}`; // template literals (string)
+            console.log(add_str);
+            
+            // boolean
+            // false : 0, null, nudefined, NaN, ''
+            // true  : any other value
+            const canRead = true;
+            const test = 3 < 1; //false
+            console.log(`value: ${canRead}, type:${typeof canRead}`);
+            console.log(`value: ${test}, type:${typeof test}`);
+            
+            // null
+            let nothing = null;
+            console.log(`value: ${nothing}, type:${typeof nothing}`);
+            
+            // undefined
+            let x;
+            console.log(`value: ${x}, type:${typeof x}`);
+            
+            //symbol, create nuique identifiers for objects
+            const symbol1 = Symbol('id');
+            const symbol2 = Symbol('id');
+            console.log(symbol1 === symbol2);
+            
+            const gSymbol1 = Symbol.for('id');
+            const gSymbol2 = Symbol.for('id');
+            console.log(gSymbol1 === gSymbol2);
+            
+            //console.log(`value: ${symbol1}, type:${typeof symbol1}`); // symbol은 바로출력 안됨 에러남.
+            console.log(`value: ${symbol1.description}, type:${typeof symbol1}`);
+            
+            
+            // 5. Dynamic typing: dynamically thyped language
+            let d_text = 'hello';
+            console.log(`value: ${d_text}, type:${typeof d_text}`); //string
+            d_text = 1;
+            console.log(`value: ${d_text}, type:${typeof d_text}`); //number
+            d_text = '7' + 5; //string으로 인식하여 문자열로 더함.
+            console.log(`value: ${d_text}, type:${typeof d_text}`); //string
+            d_text = '7' / '5'; //number로 인식하여 나누기 연산
+            console.log(`value: ${d_text}, type:${typeof d_text}`); //number
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <!--
+        <script src = "a.js"></script>
+        html은 순차적으로 parsing 되므로 a.js가 fetching 되고나서 아래의 html이 parsing된다 
+        사용자가 view단을 확인하는데 오래 걸린다.
+        js내에 dom을 사용하는 스크립트는 에러가 난다.
+        ------------------------------------------------
+        async 옵션을 사용하는경우
+        <script async src = "a.js"></script>
+        <script async src = "b.js"></script>
+        
+        Html parsing과 js파일이 비동기로 함께 수행되고 executing 된다.
+        사용자가 view화면을 빠르게 볼수 있다.
+        Html parsing이 비동기로 수행된 js파일의 executing보다 느린경우
+        dom을 사용하는 스크립트가 executing 되면 에러가 난다.
+        ---------------------------------------------------------
+        defer 옵션을 사용하는경우
+        <script defer src = "a.js"></script>
+        <script defer src = "b.js"></script>
+        
+        Html parsing과 js파일이 비동기로 함께 수행되고
+        js의 executing은 Html parsing이 끝날때까지(page is ready)까지 기다렸다 수행된다.
+        사용자가 view화면을 빠르게 볼수 있다. 단 async 옵션보다는 느리다.
+        dom을 사용하는 스크립트가 executing 되면 에러가 발생하지 않는다.
+        위의 두가지 보다 좋은 선택이다.
+        -->
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <!--alert-box 에 커서를 놓고  ctrl + e-->
+        <hr>
+        <div class="alert-box" id="alert">Alert 박스</div>
+        <button onclick="document.getElementById('alert').style.display='block'">alert box 보여주기</button>
+        <button onclick="document.getElementById('alert').style.display='none'">alert box 감추기</button>
+        
+        <script>
+            // 'use strict'; 선언을 하면 아래와 같은 선언되지 않은 코드들은 에러를 발생시킨다.
+            // 오류를 줄이기 위해 스크립트의 처음에 선언해 주는것이 좋다.
+            'use strict';
+            
+            a = 6;
+        </script>
+    </body>
+</html>
